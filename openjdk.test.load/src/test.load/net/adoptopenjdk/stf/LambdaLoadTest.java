@@ -43,6 +43,7 @@ public class LambdaLoadTest extends TimeBasedLoadTest {
 		}
 		
 		loadTestInvocation = loadTestInvocation.setInactivityLimit("60m") // Since this test is run using -Xint as well, set a larger inactivity limit than default 
+				.generateCoreDumpAtFirstLoadTestFailure(true)
 				.addSuite("lambda")				  			// Start args for the first suite
 				.setSuiteThreadCount(cpuCount - 2, 2)		// Leave 1 cpu for the JIT, 1 cpu for GC and set min 2
 				.setSuiteInventory(inventoryFile); 			// Point at the file which lists the tests
